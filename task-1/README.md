@@ -3,3 +3,6 @@
 exmample
 input: 'abc'
 output: [ 'abc', 'a.bc', 'ab.c', 'a.b.c' ]
+
+### run
+chnage const str with your own string and choose uncommit the function at the end of file index.js, then make a command: node index.js
