@@ -87,7 +87,7 @@ const existInAtLeastTen = (arrOfPhrases) => {
 
     const phrasesInTen = existInAtLeastTen(union); 
 
-    console.log('---------------------------\nPart II - Phrases that are in at least ten files \n');
+    console.log('---------------------------\nPart III - Phrases that are in at least ten files \n');
     console.log('phrases that are present min in 10 files:', phrasesInTen, '\n');
     
     difference = null;
