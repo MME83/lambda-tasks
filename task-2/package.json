@@ -1,0 +1,12 @@
+{
+    "name": "lambda-task2",
+    "version": "1.0.0",
+    "description": "search for unique phrases in files",
+    "main": "app.js",
+    "scripts" : {
+        "start": "node app.js"
+    },
+    "keywords": [],
+    "author": "mme83",
+    "license": "ISC"
+}
