@@ -1,52 +1,8 @@
 // const fs = require('fs');
-
 const { promises: fs } = require('fs');
 
 const path = require('path');
-
-// const util = require('util');
-// const readDir = util.promisify(fs.readdir);
-
 const filesPath = path.join(__dirname, 'upload');
-
-/*
-fs.readdir(filesPath, (err, files) => {
-    if (err) {
-        console.log(err);
-        return;
-    }
-    
-    if (files.length === 0) {
-        console.log('No files in directory');
-        return;
-    }
-    
-    return files;
-    //console.log('List of files in upload folder: \n', files, '\n');
-});
-
-
-const readDir = (filesPath) => {
-    fs.readdir(filesPath, (err, files) => {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        
-        if (files.length === 0) {
-            console.log('No files in directory');
-            return;
-        }
-
-        const filesList = [];
-
-        filesList.push(files);
-        // console.log('List of files in upload folder: \n', filesList, '\n');
-
-        return filesList;
-    });
-};
-*/
 
 const arrOfFileNames = async (filesPath) => {
     let fileNames;
@@ -82,28 +38,6 @@ const arrOfPhrases = async (filesPath, fileName) => {
     const content = (await getContent(path.join(filesPath, fileName))).toString().split('\n');
 
     return content;
-};
-
-// * array in func unicPhrases should be sorted like ['a', 'b', 'c' ... 'y', 'y', 'z', 'z', 'z'] before using it
-const unicPhrases = (arr, arrUniqPhrases = []) => {
-    // let arrUniqPhrathes = [];
-
-    if (arr[arr.length - 1] !== arr[arr.length]) {
-        console.log('koko');
-        return arrUniqPhrases;
-    };
-    
-    const arrHalfSize = Math.floor(arr.length / 2);
-
-    if (arr[arrHalfSize] !== arr[arrHalfSize - 1]) {
-        arrUniqPhrases = [...arr.slice(0, arrHalfSize)];
-
-        console.log("1", arrUniqPhrases);
-
-        return unicPhrases(arr.splice(0, arrHalfSize), arrUniqPhrases); 
-    };
-
-    return unicPhrases(arr.splice(arrHalfSize + 1), arrUniqPhrases);
 };
 
 const uniqueValues = async (setDifference, setPhrasesFromFile) => {
@@ -159,33 +93,4 @@ const existInAtLeastTen = (arrOfPhrases) => {
     difference = null;
     intersection = null;
     union = null;
-    
-    /*
-    const mySet = new Set(content);
-
-    console.log('Set size:', mySet.size);
-
-    let toDelete = [];
-
-    for (let i = 0; i < content.length; i++) {
-        let q = content.filter(item => {
-            return item === content[i];
-        }).length;
-
-        if (q >= 2) toDelete.push(content[i]);
-    };
-
-    toDelete.forEach(item => {
-        content.splice(content.indexOf(item), 1);
-    });
-
-    console.log(content.length);
-    */
-
-    
-
-    //const unikalni = dict => Object.keys(dict).filter((a) => dict[a] < 2);
-
-   // console.log(unikalni(count(content)));
-
 })();
