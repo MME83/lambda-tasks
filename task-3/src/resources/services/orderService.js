@@ -2,7 +2,11 @@ const constants = require('../../common/constants');
 
 const getCalculation = async (lang, mimetype, count) => {
     let price = 50;
+    let time = 1;
     
+    const d = new Date();
+    
+    // calc price
     if (lang != 'en') {
         if (count <= 1000) {
             price = constants.MIN_COST;
@@ -17,11 +21,29 @@ const getCalculation = async (lang, mimetype, count) => {
         }
     }
 
-    if (!(constants.FILE_EXT.includes(mimetype))) {
-        price = price + (price * constants.INCREASE_PERCENT) / 100;
+    // calc time
+    if (lang !='en') {
+        if (count <= Math.floor(constants.SYMB_ONEHOUR / 2)) {
+            time = constants.MIN_TIME_ORDER / 60;
+        } else {
+            time = Math.floor((constants.MIN_TIME_START + ( count / Math.floor(constants.SYMB_ONEHOUR / 2) ) * constants.MIN_TIME_START) * 100 / 60) / 100;
+        }
+    } else if (lang === 'en') {
+        if (count <= Math.floor(constants.SYMB_ONEHOUR_EN / 2)) {
+            time = constants.MIN_TIME_ORDER / 60;
+        } else {
+            time = Math.floor((constants.MIN_TIME_START + ( count / Math.floor(constants.SYMB_ONEHOUR_EN / 2) ) * constants.MIN_TIME_START) * 100 / 60) / 100;
+        }
     }
 
-    return { price, time: '0', deadline: '0', deadline_date: '0' };
+    // calc +% if !file.extension
+    if (!(constants.FILE_EXT.includes(mimetype))) {
+        price = price + (price * constants.INCREASE_PERCENT) / 100;
+
+        time = time + (time * constants.INCREASE_PERCENT) / 100;
+    }
+
+    return { price, time, deadline: '0', deadline_date: '0' };
 };
 
 module.exports = {
