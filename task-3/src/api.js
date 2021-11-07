@@ -9,8 +9,8 @@ const api = express();
 api.use(express.json());
 api.use(express.urlencoded({ extended: true }));
 
-api.use('/', (req, res, next) => {
-    if (req.originalUrl === '/') {
+api.use('/api/', (req, res, next) => {
+    if (req.originalUrl === '/api/') {
         res.send('Service is running!');
         return;
     }
@@ -18,7 +18,7 @@ api.use('/', (req, res, next) => {
     next();
 });
 
-api.use('/orders', orderRouter);
+api.use('/api/orders', orderRouter);
 api.use(handleErrors);
 
 module.exports = api;
