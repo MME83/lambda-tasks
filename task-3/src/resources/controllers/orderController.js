@@ -5,7 +5,7 @@ const asyncWrapper = require('../../middleware/asyncWrapper');
 const { orderService } = require('../services');
 
 module.exports = {
-    getOrder: asyncWrapper(async (req, res) => {
+    getCalc: asyncWrapper(async (req, res) => {
         const { language, mimetype, count } = req.body;
 
         const calc = await orderService.getCalculation(language, mimetype, count);
