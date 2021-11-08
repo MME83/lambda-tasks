@@ -1,6 +1,8 @@
 module.exports = {
-    // working days, weekdays, from 10 to 19 by Kyiv time
-    DAYS_WORK: ['Mo', 'Tu', 'We', 'Th', 'Fr'],
+    // working days, weekdays Mo-Fr, from 10 to 19 by Kyiv time
+    DAYS: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+    WEEKDAYS: ['Mo', 'Tu', 'We', 'Th', 'Fr'],
+    WEEKEND: ['Sa', 'Su'],
 
     // price in UAH, min cost of the order depending on language: uk|ru or en
     ONE_SYMB_PRICE: 0.05,
@@ -25,4 +27,11 @@ module.exports = {
     // number of symbols for one hour (60 min) depends on lang: uk|ru or en
     SYMB_ONEHOUR: 1333,
     SYMB_ONEHOUR_EN: 333,
+
+    // time constants, ms
+    ONE_HOUR: 3600 * 1000,
+    ONE_WORKING_DAY: 7 * 3600 * 1000,
+    ONE_DAY: 24 * 3600 * 1000,
+    HOURS_START_WORK_DAY: 10 * 3600 * 1000,
+    HOURS_END_WORK_DAY: 19 * 3600 * 1000
 };
