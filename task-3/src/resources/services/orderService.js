@@ -19,7 +19,7 @@ const getCalculation = async (lang, mimetype, count) => {
         } else {
             price = parseInt((constants.ONE_SYMB_PRICE_EN * count) * 100) / 100;
         }
-    }
+    };
 
     // calc time for doing an order
     if (lang !='en') {
@@ -34,14 +34,14 @@ const getCalculation = async (lang, mimetype, count) => {
         } else {
             time = Math.ceil((constants.MIN_TIME_START + Math.ceil( count / Math.floor(constants.SYMB_ONEHOUR_EN / 60))) / 60);
         }
-    }
+    };
 
-    // calc +20% if !file.extension
-    if (mimetype === constants.FILE_EXT[4]) {
+    // calc +20% if file.extension = 'other'
+    if (constants.FILE_EXT_OTHER.includes(mimetype)) {
         price = price + parseInt(((price * constants.INCREASE_PERCENT) / 100) * 100) / 100;
 
         time = time + Math.ceil((time * constants.INCREASE_PERCENT) / 100);
-    }
+    };
 
     return { price, time, deadline: '0', deadline_date: '0' };
 };

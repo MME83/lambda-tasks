@@ -16,6 +16,7 @@ module.exports = {
     // standart file extensions: ['doc', 'docx', 'rtf'] 
     // file extensions, mimetype
     FILE_EXT: ['none', 'doc', 'docx', 'rtf', 'other'],
+    FILE_EXT_OTHER: ['other'],
 
     // the percentage increase in the case of another document file extension (both for time and price)
     INCREASE_PERCENT: 20,
@@ -30,8 +31,12 @@ module.exports = {
 
     // time constants, ms
     ONE_HOUR: 3600 * 1000,
-    ONE_WORKING_DAY: 7 * 3600 * 1000,
+    ONE_WORKING_DAY: 9 * 3600 * 1000,
     ONE_DAY: 24 * 3600 * 1000,
     HOURS_START_WORK_DAY: 10 * 3600 * 1000,
-    HOURS_END_WORK_DAY: 19 * 3600 * 1000
+    HOURS_END_WORK_DAY: 19 * 3600 * 1000,
+
+    // timezones
+    UK: 'uk-UK',
+    TZ: 'Europe/Kyiv',
 };
