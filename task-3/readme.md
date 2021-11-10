@@ -4,7 +4,7 @@
 
 ## installing
 ```
-copy folder 'task-3' from PR to your PC and install dependencies
+copy folder 'task-3' from PR to your PC and install dependencies, rename file '.env-example' to '.env'
 ```
 ## run the app
 ```
