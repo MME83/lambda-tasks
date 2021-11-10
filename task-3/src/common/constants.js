@@ -66,7 +66,7 @@ module.exports = {
     SECONDS: 60,
     MS: 1000,
 
-    // timezones
-    UK: 'uk-UK',
-    TZ: 'Europe/Kyiv',
+    // timezones, use hour12:false for 24h: 00:00 - 23:59 time
+    UK: 'en-US',
+    TZ: 'Europe/Kiev',
 };
