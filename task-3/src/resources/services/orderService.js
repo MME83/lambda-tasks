@@ -28,13 +28,13 @@ const getCalculation = (lang, mimetype, count) => {
         if (count <= constants.MIN_COST / constants.ONE_SYMB_PRICE) {
             price = constants.MIN_COST;
         } else {
-            price = Math.ceil((constants.ONE_SYMB_PRICE * count) * 100, 10) / 100;
+            price = Math.ceil((constants.ONE_SYMB_PRICE * count) * 100) / 100;
         }
     } else if (lang === 'en') {
         if (count <= constants.MIN_COST_EN / constants.ONE_SYMB_PRICE_EN) {
             price = constants.MIN_COST_EN;
         } else {
-            price = Math.ceil((constants.ONE_SYMB_PRICE_EN * count) * 100, 10) / 100;
+            price = Math.ceil((constants.ONE_SYMB_PRICE_EN * count) * 100) / 100;
         }
     }
 
@@ -60,20 +60,13 @@ const getCalculation = (lang, mimetype, count) => {
         time += Math.ceil((time * constants.INCREASE_PERCENT) / 100);
     }
 
+    price = Math.ceil(price * 100) / 100;
+
     // calc timestamps in seconds
     const deadline = getTimestamps(nowDate, time) / constants.MS;
 
     // calc deadline date
     const deadline_date = formatDate(new Date(deadline * constants.MS));
-    // new Date(deadline * constants.MS).toString();
-    /* new Date(deadline * constants.MS).toLocaleString(constants.UK, {
-        hour12: false,
-        timeZone: constants.TZ
-    }); */
-
-    // deadline_date.toString()
-
-    // console.log(nowDate.toISOString(), nowDate.getMonth(), deadline_date, deadline_date.getMonth());
 
     return {
         price,

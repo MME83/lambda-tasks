@@ -10,3 +10,5 @@ copy folder 'task-3' from PR to your PC and install dependencies, rename file '.
 ```
 npm start
 ```
+## run test (check the correct timestamp)
+npm run test
