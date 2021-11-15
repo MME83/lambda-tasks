@@ -1,0 +1,30 @@
+{
+    "name": "lambda-task3",
+    "version": "1.0.0",
+    "type": "commonjs",
+    "description": "create simple api for correctarium",
+    "main": "server.js",
+    "scripts": {
+        "start": "node src/server.js",
+        "test": "jest"
+    },
+    "keywords": [
+        "js",
+        "jest"
+    ],
+    "author": "mme83",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "@types/jest": "^27.0.2",
+        "eslint": "^8.1.0",
+        "eslint-config-airbnb-base": "^14.2.1",
+        "eslint-plugin-import": "^2.25.2",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^5.1.1",
+        "jest": "^27.3.1"
+    }
+}
