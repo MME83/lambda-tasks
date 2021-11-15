@@ -1,5 +1,5 @@
 {
-    "name": "lambda-task3",
+    "name": "lambda-task4",
     "version": "1.0.0",
     "type": "commonjs",
     "description": "create simple api for correctarium",
@@ -18,13 +18,5 @@
         "dotenv": "^10.0.0",
         "express": "^4.17.1"
     },
-    "devDependencies": {
-        "@types/jest": "^27.0.2",
-        "eslint": "^8.1.0",
-        "eslint-config-airbnb-base": "^14.2.1",
-        "eslint-plugin-import": "^2.25.2",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-promise": "^5.1.1",
-        "jest": "^27.3.1"
-    }
+    "devDependencies": {}
 }
