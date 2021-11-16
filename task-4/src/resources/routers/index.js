@@ -1,3 +1,3 @@
 module.exports = {
-    orderRouter: require('./orderRouter'),
+    userRouter: require('./userRouter'),
 };
