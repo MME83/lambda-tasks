@@ -11,7 +11,7 @@ router.get(
 
 router.post(
     '/signup',
-    userMiddleware.isReqBodyInSignupValid,
+    userMiddleware.isReqBodyValid,
     userMiddleware.isEmailExists,
     userController.createUser
 );

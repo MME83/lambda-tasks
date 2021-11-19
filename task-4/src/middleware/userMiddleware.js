@@ -7,7 +7,7 @@ const { userService } = require('../resources/services');
 const { userValidator } = require('../util');
 
 module.exports = {
-    isReqBodyInSignupValid: asyncWrapper(async (req, res, next) => {
+    isReqBodyValid: asyncWrapper(async (req, res, next) => {
         try {
             const value = await userValidator.userBodyValidator.validateAsync(req.body);
 
@@ -25,6 +25,18 @@ module.exports = {
         const user = await userService.getUserByEmail({ email });
 
         if (user) throw new CustomError(HttpStatusCode.CONFLICT, `The email: ${email} is already exists`);
+
+        next();
+    }),
+
+    isLoginExist: asyncWrapper(async (req, res, next) => {
+        const { email } = req.body;
+
+        const user = await userService.getUserByEmail({ email });
+
+        if (!user) throw new CustomError(HttpStatusCode.NOT_FOUND, 'Login is no valide');
+
+        req.user = user;
 
         next();
     }),

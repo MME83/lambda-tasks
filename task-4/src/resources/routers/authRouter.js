@@ -1,11 +1,13 @@
 const router = require('express').Router();
 
-// const { userMiddleware } = require('../../middleware');
+const { userMiddleware } = require('../../middleware');
 
 const { authController } = require('../controllers');
 
 router.post(
     '/login',
+    userMiddleware.isReqBodyValid,
+    userMiddleware.isLoginExist,
     authController.userLogin
 );
 

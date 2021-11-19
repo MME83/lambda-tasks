@@ -18,7 +18,7 @@ app.use('/', (req, res, next) => {
     next();
 });
 
-// app.use('/auth', authRouter);
+app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use(handleErrors);
 

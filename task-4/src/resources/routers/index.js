@@ -1,4 +1,4 @@
 module.exports = {
-  //  authRouter: require('./authRouter'),
+    authRouter: require('./authRouter'),
     userRouter: require('./userRouter'),
 };
