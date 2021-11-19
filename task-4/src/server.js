@@ -20,6 +20,8 @@ const start = async () => {
         });
     } catch (e) {
         console.error(e);
+    } finally {
+        await client.close();
     }
 };
 

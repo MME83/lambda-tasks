@@ -1,3 +1,5 @@
+const { UserModel } = require('../models');
+
 const HttpStatusCode = require('../../common/statusCodes');
 
 const asyncWrapper = require('../../middleware/asyncWrapper');
@@ -5,15 +7,37 @@ const asyncWrapper = require('../../middleware/asyncWrapper');
 const { userService } = require('../services');
 
 module.exports = {
-    getCalc: asyncWrapper(async (req, res) => {
-        const { language, mimetype, count } = req.body;
+    getAllUsers: asyncWrapper(async (req, res) => {
+        const users = await userService.getAll();
 
-        const calc = await userService.getCalculation(language, mimetype, count);
-
-        if (!calc) {
-            return res.status(HttpStatusCode.NOT_FOUND).send({ message: 'we can\'t calculate your order, please call to us' });
+        if (!users.length) {
+            return res
+                .status(HttpStatusCode.NOT_FOUND)
+                .send({ message: 'No users found' });
         }
 
-        return res.json(calc);
-    })
+        return res.status(HttpStatusCode.OK).json(users.map(UserModel.toResponse));
+    }),
+
+    createUser: asyncWrapper(async (req, res) => {
+        const user = await userService.createUser(req.body);
+
+        if (!user) {
+            return res.status(HttpStatusCode.CONFLICT).send({ message: 'Can\'t create new User, pls try again' });
+        }
+
+        return res.status(HttpStatusCode.CREATED).json(UserModel.toResponse(user));
+    }),
+
+    getUserById: asyncWrapper(async (req, res) => {
+        const { user_id } = req.params;
+
+        const user = await userService.getUserById(user_id);
+
+        if (!user) {
+            return res.status(HttpStatusCode.NOT_FOUND).send({ message: 'User not found' });
+        }
+
+        return res.json(UserModel.toResponse(user));
+    }),
 };

@@ -1,3 +1,6 @@
+/**
+ * UserModel - custom class for responsing user without pass
+ */
 module.exports = {
-    userModel: require('./userModel'),
+    UserModel: require('./userModel'),
 };

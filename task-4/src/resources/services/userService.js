@@ -1,7 +1,36 @@
-const constants = require('../../common/constants');
+const { collectionUsers } = require('../../db/dbCollections');
+// const { USERS } = require('./dbFieldsEnum');
 
-const funcName = () => 0;
+// const constants = require('../../common/constants');
 
 module.exports = {
-    funcName,
+    createUser: async (userData) => {
+        const { email, password } = userData;
+
+        const collection = await collectionUsers();
+
+        const user = await collection.insertOne({ email, password });
+
+        if (user) {
+            process.stdout.write('\n ...new user created \n\n');
+        }
+
+        return { _id: user.insertedId, email, password };
+    },
+
+    getUserById: async (id) => {
+        const collection = await collectionUsers();
+
+        const user = await collection.findOne(id);
+
+        return user;
+    },
+
+    getUserByEmail: async (email) => {
+        const collection = await collectionUsers();
+
+        const user = await collection.findOne(email);
+
+        return user;
+    }
 };
