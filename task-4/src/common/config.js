@@ -13,4 +13,7 @@ module.exports = {
     DB_NAME: process.env.DB_NAME,
 
     SALT: process.env.SALT,
+
+    SECRET_ACCESS: process.env.SECRET_ACCESS,
+    SECRET_REFRESH: process.env.SECRET_REFRESH,
 };

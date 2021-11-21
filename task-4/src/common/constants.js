@@ -1,4 +1,5 @@
 module.exports = {
-   // put constants below
-  
+    // min & max in seconds
+    MIN: 30,
+    MAX: 60,
 };

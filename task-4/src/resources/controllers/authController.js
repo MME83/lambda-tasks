@@ -2,7 +2,7 @@ const HttpStatusCode = require('../../common/statusCodes');
 
 const asyncWrapper = require('../../middleware/asyncWrapper');
 
-const { authService } = require('../services');
+const { authService, jwtService } = require('../services');
 
 module.exports = {
     userLogin: asyncWrapper(async (req, res) => {
@@ -11,6 +11,13 @@ module.exports = {
 
         await authService.userLogin(password, user.password);
 
-        return res.status(HttpStatusCode.OK).json('Success!');
+        const tokenPair = jwtService.genereateTokenPair();
+
+        await jwtService.createTokensInBd(tokenPair, user._id);
+
+        return res.status(HttpStatusCode.OK).json({
+            ...tokenPair,
+            user_id: user._id,
+        });
     }),
 };

@@ -1,5 +1,5 @@
 const connectToDB = require('./dbConnection');
-const { USERS } = require('./dbFieldsEnum');
+const { USERS, OAUTH } = require('./dbFieldsEnum');
 
 module.exports = {
     collectionUsers: async () => {
@@ -11,4 +11,12 @@ module.exports = {
 
         return collection;
     },
+
+    collectionOauth: async () => {
+        const db = await connectToDB();
+
+        const collection = db.collection(OAUTH);
+
+        return collection;
+    }
 };
