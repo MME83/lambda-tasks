@@ -25,4 +25,4 @@ body { email: "email@google.com", password: "pass" }
 ```
 #### GET ALL USERS with access_token | GET, URL: YOURHOST:PORT/users
 #### FIND USER BY ID with access_token | GET, URL: YOURHOST:PORT/users/<:user_id>
-#### CREATE NEW TOKEN PAIR BY USING REFRESH ROUTER | POST, URL: YOURHOST:PORT/auth/refresh
+#### CREATE NEW TOKEN PAIR using refresh_token | POST, URL: YOURHOST:PORT/auth/refresh
