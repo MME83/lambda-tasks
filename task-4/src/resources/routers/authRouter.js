@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { userMiddleware } = require('../../middleware');
+const { userMiddleware, authMiddleware } = require('../../middleware');
 
 const { authController } = require('../controllers');
 
@@ -12,11 +12,13 @@ router.post(
 );
 
 router.post(
-    '/logout'
+    '/refresh',
+    authMiddleware.checkRefreshToken,
+    authController.refreshToken
 );
 
 router.post(
-    '/refresh'
+    '/logout'
 );
 
 module.exports = router;

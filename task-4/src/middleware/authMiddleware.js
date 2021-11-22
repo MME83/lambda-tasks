@@ -1,3 +1,5 @@
+const { ObjectId } = require('mongodb');
+
 const constants = require('../common/constants');
 
 const CustomError = require('../errors/errorHandler');
@@ -53,6 +55,8 @@ module.exports = {
 
             // use for check role middleware
             req.userLogged = tokenInDb.Users;
+
+            next();
         } catch (err) {
             next(err);
         }

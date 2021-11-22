@@ -5,6 +5,7 @@ const HttpStatusCode = require('../../common/statusCodes');
 const asyncWrapper = require('../../middleware/asyncWrapper');
 
 const { authService, jwtService } = require('../services');
+const constants = require('../../common/constants');
 
 module.exports = {
     userLogin: asyncWrapper(async (req, res) => {
@@ -20,6 +21,24 @@ module.exports = {
         return res.status(HttpStatusCode.OK).json({
             ...tokenPair,
             user: UserModel.toResponse(user),
+        });
+    }),
+
+    refreshToken: asyncWrapper(async (req, res) => {
+        const sessionToken = req.get(constants.AUTHORIZATION);
+        const token = sessionToken.split(' ')[1];
+
+        const { userLogged } = req;
+
+        await jwtService.refreshToken(token);
+
+        const tokenPair = jwtService.genereateTokenPair();
+
+        await jwtService.createTokensInBd(tokenPair, userLogged);
+
+        return res.status(HttpStatusCode.OK).json({
+            ...tokenPair,
+            user_id: userLogged,
         });
     }),
 };

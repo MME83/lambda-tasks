@@ -47,5 +47,15 @@ module.exports = {
         const getToken = await collection.findOne(token);
 
         return getToken;
-    }
+    },
+
+    refreshToken: async (refresh_token, token) => {
+        const collection = await collectionOauth();
+
+        const tokenDeleted = await collection.deleteOne({ [refresh_token]: token });
+
+        if (!tokenDeleted) throw new CustomError(HttpStatusCode.BAD_REQUEST, 'Token in DB not found');
+
+        return true;
+    },
 };
