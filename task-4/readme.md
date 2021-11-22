@@ -10,10 +10,10 @@ download folder 'task-4' from PR to your PC and install dependencies, rename fil
 npm start
 ```
 ## run test (check the correct timestamp)
+```
 npm run test
 ```
 
-```
 ## Working routers (with oauth2/auth), use Bearer tokens in header: key: Authorization, value: Bearer access_token/refresh_token
 #### LOGIN | POST, URL:  YOURHOST:PORT/auth/login    
 ```
