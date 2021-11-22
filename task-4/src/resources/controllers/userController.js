@@ -10,7 +10,7 @@ module.exports = {
     getAllUsers: asyncWrapper(async (req, res) => {
         const users = await userService.getAll();
 
-        if (!users.length) {
+        if (!users) {
             return res
                 .status(HttpStatusCode.NOT_FOUND)
                 .send({ message: 'No users found' });

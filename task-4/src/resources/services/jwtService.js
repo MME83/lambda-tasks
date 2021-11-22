@@ -22,7 +22,7 @@ module.exports = {
     createTokensInBd: async (tokenPair, user_id) => {
         const collection = await collectionOauth();
 
-        const createTokens = await collection.insertOne({ ...tokenPair, User_id: user_id });
+        const createTokens = await collection.insertOne({ ...tokenPair, Users: user_id });
 
         if (!createTokens) {
             throw new CustomError(HttpStatusCode.BAD_REQUEST, 'Can\'t create token pair, try again...');
@@ -31,7 +31,7 @@ module.exports = {
         process.stdout.write('\n ...new token pair created in DB \n\n');
     },
 
-    verifeyToken: (token, tokenType = 'access') => {
+    verifyToken: (token, tokenType = 'access') => {
         try {
             const secret = tokenType === 'access' ? SECRET_ACCESS : SECRET_REFRESH;
 
@@ -39,5 +39,13 @@ module.exports = {
         } catch (err) {
             throw new CustomError(HttpStatusCode.UNAUTHORISED, 'Invalid token');
         }
+    },
+
+    getTokenFromBD: async (token) => {
+        const collection = await collectionOauth();
+
+        const getToken = await collection.findOne(token);
+
+        return getToken;
     }
 };

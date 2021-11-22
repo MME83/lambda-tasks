@@ -1,3 +1,5 @@
+const { UserModel } = require('../models');
+
 const HttpStatusCode = require('../../common/statusCodes');
 
 const asyncWrapper = require('../../middleware/asyncWrapper');
@@ -17,7 +19,7 @@ module.exports = {
 
         return res.status(HttpStatusCode.OK).json({
             ...tokenPair,
-            user_id: user._id,
+            user: UserModel.toResponse(user),
         });
     }),
 };

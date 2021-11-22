@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-const { userMiddleware } = require('../../middleware');
-
+const { userMiddleware, authMiddleware } = require('../../middleware');
 const { userController } = require('../controllers');
 
 router.get(
     '/',
+    authMiddleware.checkAccessToken,
     userController.getAllUsers
 );
 
@@ -18,6 +18,7 @@ router.post(
 
 router.get(
     '/:user_id',
+    authMiddleware.checkAccessToken,
     userController.getUserById
 );
 

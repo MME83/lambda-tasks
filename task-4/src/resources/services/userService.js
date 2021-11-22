@@ -1,3 +1,5 @@
+const { ObjectId } = require('mongodb');
+
 const { collectionUsers } = require('../../db/dbCollections');
 
 const { hashPassword } = require('../../util');
@@ -22,10 +24,18 @@ module.exports = {
         return { _id: user.insertedId, email, hashedPassword };
     },
 
+    getAll: async () => {
+        const collection = await collectionUsers();
+
+        const users = await collection.find();
+
+        return users;
+    },
+
     getUserById: async (id) => {
         const collection = await collectionUsers();
 
-        const user = await collection.findOne(id);
+        const user = await collection.findOne({ _id: new ObjectId(id) });
 
         return user;
     },
