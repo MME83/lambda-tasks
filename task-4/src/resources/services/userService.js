@@ -27,7 +27,7 @@ module.exports = {
     getAll: async () => {
         const collection = await collectionUsers();
 
-        const users = await collection.find();
+        const users = await collection.find().toArray();
 
         return users;
     },
