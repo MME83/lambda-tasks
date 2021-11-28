@@ -17,7 +17,15 @@ router.post(
 );
 
 router.get(
+    '/me:req_num',
+    userMiddleware.isReqNumValid,
+    authMiddleware.checkAccessToken,
+    userController.getUserByReqNum
+);
+
+router.get(
     '/:user_id',
+    userMiddleware.isUserIdValid,
     authMiddleware.checkAccessToken,
     userController.getUserById
 );

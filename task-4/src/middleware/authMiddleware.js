@@ -1,4 +1,4 @@
-const { ObjectId } = require('mongodb');
+// const { ObjectId } = require('mongodb');
 
 const constants = require('../common/constants');
 
@@ -18,7 +18,7 @@ module.exports = {
 
             const token = sessionToken.split(' ')[1];
 
-            jwtService.verifyToken(token);
+            const decode = jwtService.verifyToken(token);
 
             const tokenInDb = await jwtService.getTokenFromBD({ access_token: token });
 
@@ -27,7 +27,10 @@ module.exports = {
             }
 
             // use for check role middleware
-            req.userLogged = tokenInDb.Users;
+            req.userLogged = {
+                user_id: tokenInDb.Users,
+                email: decode.email
+            };
 
             next();
         } catch (err) {
@@ -45,7 +48,7 @@ module.exports = {
 
             const token = sessionToken.split(' ')[1];
 
-            jwtService.verifyToken(token, 'refresh');
+            const decode = jwtService.verifyToken(token, 'refresh');
 
             const tokenInDb = await jwtService.getTokenFromBD({ refresh_token: token });
 
@@ -54,7 +57,10 @@ module.exports = {
             }
 
             // use for check role middleware
-            req.userLogged = tokenInDb.Users;
+            req.userLogged = {
+                user_id: tokenInDb.Users,
+                email: decode.email
+            };
 
             next();
         } catch (err) {

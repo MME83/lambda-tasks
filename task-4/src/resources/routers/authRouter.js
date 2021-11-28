@@ -17,8 +17,10 @@ router.post(
     authController.refreshToken
 );
 
+/*
 router.post(
     '/logout'
 );
+*/
 
 module.exports = router;

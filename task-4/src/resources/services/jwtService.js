@@ -11,10 +11,10 @@ const { MIN, MAX } = require('../../common/constants');
 const { collectionOauth } = require('../../db/dbCollections');
 
 module.exports = {
-    genereateTokenPair: () => {
+    genereateTokenPair: (email) => {
         const getExpTime = getRandomInt.getRandomInt(MIN, MAX);
-        const access_token = jwt.sign({}, SECRET_ACCESS, { expiresIn: getExpTime });
-        const refresh_token = jwt.sign({}, SECRET_REFRESH, { expiresIn: '31d' });
+        const access_token = jwt.sign({ email }, SECRET_ACCESS, { expiresIn: getExpTime });
+        const refresh_token = jwt.sign({ email }, SECRET_REFRESH, { expiresIn: '31d' });
 
         return { access_token, refresh_token };
     },
@@ -35,7 +35,9 @@ module.exports = {
         try {
             const secret = tokenType === 'access' ? SECRET_ACCESS : SECRET_REFRESH;
 
-            jwt.verify(token, secret);
+            const decode = jwt.verify(token, secret);
+
+            return decode;
         } catch (err) {
             throw new CustomError(HttpStatusCode.UNAUTHORISED, 'Invalid token');
         }

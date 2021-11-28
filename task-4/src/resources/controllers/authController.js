@@ -9,12 +9,12 @@ const constants = require('../../common/constants');
 
 module.exports = {
     userLogin: asyncWrapper(async (req, res) => {
-        const { password } = req.body;
+        const { email, password } = req.body;
         const { user } = req;
 
         await authService.userLogin(password, user.password);
 
-        const tokenPair = jwtService.genereateTokenPair();
+        const tokenPair = jwtService.genereateTokenPair(email);
 
         await jwtService.createTokensInBd(tokenPair, user._id);
 
@@ -32,13 +32,13 @@ module.exports = {
 
         await jwtService.refreshToken(token);
 
-        const tokenPair = jwtService.genereateTokenPair();
+        const tokenPair = jwtService.genereateTokenPair(userLogged.email);
 
-        await jwtService.createTokensInBd(tokenPair, userLogged);
+        await jwtService.createTokensInBd(tokenPair, userLogged.user_id);
 
         return res.status(HttpStatusCode.OK).json({
             ...tokenPair,
-            user_id: userLogged,
+            user_id: userLogged.user_id,
         });
     }),
 };

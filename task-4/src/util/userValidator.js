@@ -17,4 +17,10 @@ module.exports = {
             .string().trim().regex(RegExp.ID_REGEXP)
             .required()
     }),
+
+    reqNumValidator: Joi.object({
+        req_num: Joi
+            .string().trim().regex(RegExp.REQ_NUM_REGEXP)
+            .required()
+    })
 };

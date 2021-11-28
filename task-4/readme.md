@@ -26,3 +26,6 @@ body { email: "email@google.com", password: "pass" }
 #### GET ALL USERS with access_token | GET, URL: YOURHOST:PORT/users
 #### FIND USER BY ID with access_token | GET, URL: YOURHOST:PORT/users/<:user_id>
 #### CREATE NEW TOKEN PAIR using refresh_token | POST, URL: YOURHOST:PORT/auth/refresh
+#### GET MOCK SOME USER DATA using access_token | GET, URL: YOURHOST:PORT/users/me<:req_num>
+```
+p.s. req_num = 'only numbers [0-9]'

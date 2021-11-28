@@ -41,6 +41,16 @@ module.exports = {
         next();
     }),
 
+    isReqNumValid: asyncWrapper(async (req, res, next) => {
+        try {
+            await userValidator.reqNumValidator.validateAsync(req.params);
+
+            next();
+        } catch (error) {
+            throw new CustomError(HttpStatusCode.BAD_REQUEST, error.details[0].message);
+        }
+    }),
+
     isUserIdValid: asyncWrapper(async (req, res, next) => {
         try {
             await userValidator.getUserByIdValidator.validateAsync(req.params);

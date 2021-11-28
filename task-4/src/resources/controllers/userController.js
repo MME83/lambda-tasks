@@ -40,4 +40,17 @@ module.exports = {
 
         return res.json(UserModel.toResponse(user));
     }),
+
+    getUserByReqNum: (req, res) => {
+        const { req_num } = req.params;
+
+        const { userLogged } = req;
+
+        return res.json({
+            reques_num: req_num,
+            data: {
+                username: userLogged.email
+            }
+        });
+    }
 };
